@@ -1,0 +1,22 @@
+name: cupertino_typography
+description: "The complete Apple HIG iOS Text Style catalog (11 styles) as Flutter TextStyles, with emphasized variants and a Material TextTheme bridge."
+version: 0.1.0
+topics:
+  - typography
+  - cupertino
+  - ios
+  - text-style
+  - design-system
+
+environment:
+  sdk: ^3.0.0
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
