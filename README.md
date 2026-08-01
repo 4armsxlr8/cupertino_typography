@@ -268,10 +268,6 @@ The differences between the two can be summarized as follows.
   well suited to custom screen layouts where you want to freely choose
   "this part is title2" or "that part is caption1."
 
-## Background article (Japanese)
-
-The investigation behind this package — why Flutter renders the "SF font, Material metrics" chimera on iOS — is documented in a Zenn article (in Japanese): TODO: Zenn article URL
-
 ## License
 
 [MIT License](LICENSE)
