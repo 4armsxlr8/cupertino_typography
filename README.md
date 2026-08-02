@@ -9,9 +9,12 @@ with a function that bridges them into a Material `TextTheme`.
 
 ![A side-by-side comparison of the same feed screen on iOS, in English: the left half uses Material's default TextTheme, and the right half uses CupertinoTypography.textTheme().](https://raw.githubusercontent.com/4armsxlr8/cupertino_typography/main/doc/material-vs-hig-feed-en.png)
 
-*Left: Material's default `TextTheme`. Right: this package's
-`CupertinoTypography.textTheme()`, applied to the same screen (Flutter on
-iOS, English UI).*
+*A screenshot of the bundled example app: the left half uses Material's
+default `TextTheme`, and the right half uses
+`CupertinoTypography.textTheme()` applied to the same feed screen
+(Flutter on iOS, English UI). Reproduce it yourself with
+`flutter run --dart-define=SHOT=feed_material` / `SHOT=feed_hig` in
+`example/`.*
 
 ## Background
 
@@ -142,8 +145,10 @@ for `CupertinoTypography.textTheme()`).
 | labelMedium | caption1 |
 | labelSmall | caption2 |
 
-The `example/` folder contains a demo app that lists all 11 styles side
-by side with their emphasized variants.
+The `example/` folder contains a demo app with two screens, switchable
+from the bottom navigation bar: a gallery listing all 11 styles side by
+side with their emphasized variants, and the feed comparison demo shown
+above.
 
 ### 4. `CupertinoTypography.adaptiveTextTheme()` — HIG typography only on Apple platforms
 

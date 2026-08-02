@@ -9,9 +9,11 @@ Flutter の `TextStyle` としてそのまま使えるようにするパッケ�
 
 ![同じフィード画面を iOS 上で並べた比較画像(英語表示)。左半分は Material の既定 TextTheme、右半分は CupertinoTypography.textTheme() を適用している。](https://raw.githubusercontent.com/4armsxlr8/cupertino_typography/main/doc/material-vs-hig-feed-en.png)
 
-*左: Material 既定の `TextTheme`。右: 本パッケージの
-`CupertinoTypography.textTheme()` を同じ画面に適用したもの(iOS 上の
-Flutter、英語表示)。*
+*同梱の example アプリのスクリーンショット。左半分は Material 既定の
+`TextTheme`、右半分は同じフィード画面に `CupertinoTypography.textTheme()`
+を適用したもの(iOS 上の Flutter、英語表示)。`example/` で
+`flutter run --dart-define=SHOT=feed_material` /
+`SHOT=feed_hig` を実行すれば自分の手元でも再現できます。*
 
 ## 背景
 
@@ -138,8 +140,9 @@ MaterialApp(
 | labelMedium | caption1 |
 | labelSmall | caption2 |
 
-`example/` フォルダには、11 スタイルすべてを強調バリアントと並べて一覧表示
-するデモアプリが入っています。
+`example/` フォルダには、下部のナビゲーションバーで切り替えられる 2 画面の
+デモアプリが入っています。11 スタイルすべてを強調バリアントと並べて一覧表示
+するギャラリーと、上記のフィード比較デモです。
 
 ### 4. `CupertinoTypography.adaptiveTextTheme()` — Apple プラットフォームでのみ HIG タイポグラフィを適用
 
