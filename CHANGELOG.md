@@ -1,3 +1,11 @@
+## 0.2.0
+
+* `CupertinoTypography.adaptiveTextTheme()`: Added a static method that returns `CupertinoTypography.textTheme()` on iOS and macOS, and `null` on every other platform, following the same `adaptive` naming idiom as widgets like `Switch.adaptive`. Accepts an optional `platform` argument for tests and other callers that need to force a specific platform.
+* Added a GitHub Actions CI workflow (`.github/workflows/ci.yaml`) that runs `flutter analyze` and `flutter test` for both the root package and the `example/` app on every push and pull request against `main`.
+* README / README.ja: Added a side-by-side screenshot comparing Material's default `TextTheme` against `CupertinoTypography.textTheme()` on the same screen, plus a usage example for `adaptiveTextTheme()`.
+
+🤖 Generated with Claude Code
+
 ## 0.1.0
 
 Initial release.

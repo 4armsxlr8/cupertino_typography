@@ -7,6 +7,12 @@ Style catalog directly as Flutter `TextStyle`s. It provides all 11 HIG
 styles (plus an emphasized variant of each) as static constants, along
 with a function that bridges them into a Material `TextTheme`.
 
+![A side-by-side comparison of the same feed screen on iOS, in English: the left half uses Material's default TextTheme, and the right half uses CupertinoTypography.textTheme().](https://raw.githubusercontent.com/4armsxlr8/cupertino_typography/main/doc/material-vs-hig-feed-en.png)
+
+*Left: Material's default `TextTheme`. Right: this package's
+`CupertinoTypography.textTheme()`, applied to the same screen (Flutter on
+iOS, English UI).*
+
 ## Background
 
 When you run a `MaterialApp` on iOS, the font itself falls back to the
@@ -31,7 +37,7 @@ Add it to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  cupertino_typography: ^0.1.0
+  cupertino_typography: ^0.2.0
 ```
 
 If you want to try it locally before it's published to pub.dev, you can
@@ -45,7 +51,7 @@ dependencies:
 
 ## Usage
 
-This package exposes 3 public APIs.
+This package exposes 4 public APIs.
 
 ### 1. `CupertinoTypography` — `TextStyle` constants for all 11 HIG styles
 
@@ -138,6 +144,26 @@ for `CupertinoTypography.textTheme()`).
 
 The `example/` folder contains a demo app that lists all 11 styles side
 by side with their emphasized variants.
+
+### 4. `CupertinoTypography.adaptiveTextTheme()` — HIG typography only on Apple platforms
+
+A variant of `textTheme()` for apps that target more than just iOS and
+macOS. It returns `textTheme()` on iOS and macOS, and `null` everywhere
+else. Passing `null` to `ThemeData(textTheme:)` is not an error — it
+tells Material to fall back to its own built-in default `TextTheme` — so
+you can wire this straight into `ThemeData` and get HIG typography only
+where it makes sense, without an `if` statement of your own.
+
+```dart
+MaterialApp(
+  theme: ThemeData(textTheme: CupertinoTypography.adaptiveTextTheme()),
+  home: const HomePage(),
+);
+```
+
+The optional `platform` argument exists for tests and other code that
+needs to force a specific platform; when omitted, the platform is read
+from `defaultTargetPlatform`.
 
 ### Dark mode support (resolving dynamic colors)
 

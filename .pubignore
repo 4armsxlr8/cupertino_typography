@@ -23,3 +23,9 @@ example/build/
 # these leak into the published archive.
 *.iml
 .idea/
+
+# README screenshots referenced by absolute GitHub raw URLs (see README.md
+# / README.ja.md). They only need to exist in the Git repository for
+# GitHub's raw content host to serve them, so they are excluded from the
+# published pub.dev archive to keep it small.
+doc/

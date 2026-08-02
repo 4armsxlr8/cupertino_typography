@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:cupertino_typography/cupertino_typography.dart';
@@ -305,6 +306,72 @@ void main() {
 
     test('11pt は CupertinoSystemText', () {
       expect(CupertinoTypography.fontFamilyForSize(11), 'CupertinoSystemText');
+    });
+  });
+
+  group('CupertinoTypography.adaptiveTextTheme (プラットフォーム分岐)', () {
+    test('iOS では textTheme() と同値を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(platform: TargetPlatform.iOS),
+        CupertinoTypography.textTheme(),
+      );
+    });
+
+    test('macOS では textTheme() と同値を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(platform: TargetPlatform.macOS),
+        CupertinoTypography.textTheme(),
+      );
+    });
+
+    test('android では null を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(
+          platform: TargetPlatform.android,
+        ),
+        isNull,
+      );
+    });
+
+    test('fuchsia では null を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(
+          platform: TargetPlatform.fuchsia,
+        ),
+        isNull,
+      );
+    });
+
+    test('linux では null を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(platform: TargetPlatform.linux),
+        isNull,
+      );
+    });
+
+    test('windows では null を返す', () {
+      expect(
+        CupertinoTypography.adaptiveTextTheme(
+          platform: TargetPlatform.windows,
+        ),
+        isNull,
+      );
+    });
+
+    test('platform 省略時は debugDefaultTargetPlatformOverride を尊重する', () {
+      final originalOverride = debugDefaultTargetPlatformOverride;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = originalOverride;
+      });
+
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      expect(
+        CupertinoTypography.adaptiveTextTheme(),
+        CupertinoTypography.textTheme(),
+      );
+
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      expect(CupertinoTypography.adaptiveTextTheme(), isNull);
     });
   });
 }

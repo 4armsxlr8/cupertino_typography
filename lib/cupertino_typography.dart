@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// A self-contained definition of the Apple Human Interface Guidelines
@@ -424,5 +425,41 @@ class CupertinoTypography {
       labelMedium: caption1,
       labelSmall: caption2,
     );
+  }
+
+  /// Returns [textTheme] on iOS and macOS, and `null` on every other
+  /// platform.
+  ///
+  /// This exists for call sites that only want HIG typography on Apple
+  /// platforms and are fine falling back to Material's own defaults
+  /// everywhere else. `null` is a deliberate return value here, not an
+  /// error case: `ThemeData(textTheme: ...)` treats `null` as "use
+  /// Material's built-in default `TextTheme`", so passing the result of
+  /// this method straight through gives HIG typography on Apple platforms
+  /// while leaving Material's own type scale untouched elsewhere.
+  ///
+  /// The `adaptive` naming follows the same idiom as Flutter's own
+  /// platform-adaptive widgets, such as
+  /// [Switch.adaptive](https://api.flutter.dev/flutter/material/Switch/Switch.adaptive.html)
+  /// — a constructor or method that changes its behavior per platform
+  /// while keeping a single call site.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// ThemeData(textTheme: CupertinoTypography.adaptiveTextTheme())
+  /// ```
+  ///
+  /// [platform] is normally omitted, in which case the platform is read
+  /// from [defaultTargetPlatform]. It exists so tests (and code that
+  /// otherwise needs to force a specific platform) can pass a
+  /// [TargetPlatform] explicitly instead of relying on
+  /// `debugDefaultTargetPlatformOverride`.
+  static TextTheme? adaptiveTextTheme({TargetPlatform? platform}) {
+    final resolved = platform ?? defaultTargetPlatform;
+    return switch (resolved) {
+      TargetPlatform.iOS || TargetPlatform.macOS => textTheme(),
+      _ => null,
+    };
   }
 }

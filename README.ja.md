@@ -7,6 +7,12 @@ Flutter の `TextStyle` としてそのまま使えるようにするパッケ�
 スタイルすべて(および各スタイルの強調バリアント)を static 定数として提供する
 ほか、それらを Material の `TextTheme` へ橋渡しする関数も含んでいます。
 
+![同じフィード画面を iOS 上で並べた比較画像(英語表示)。左半分は Material の既定 TextTheme、右半分は CupertinoTypography.textTheme() を適用している。](https://raw.githubusercontent.com/4armsxlr8/cupertino_typography/main/doc/material-vs-hig-feed-en.png)
+
+*左: Material 既定の `TextTheme`。右: 本パッケージの
+`CupertinoTypography.textTheme()` を同じ画面に適用したもの(iOS 上の
+Flutter、英語表示)。*
+
 ## 背景
 
 iOS 上で `MaterialApp` を動かすと、フォント自体は端末の San Francisco 書体に
@@ -30,7 +36,7 @@ Style カタログの一部しかカバーしていません(現行の Flutter S
 
 ```yaml
 dependencies:
-  cupertino_typography: ^0.1.0
+  cupertino_typography: ^0.2.0
 ```
 
 pub.dev に公開する前にローカルで試したい場合は、`path` 依存として参照できます。
@@ -43,7 +49,7 @@ dependencies:
 
 ## 使い方
 
-このパッケージは 3 つの public API を公開しています。
+このパッケージは 4 つの public API を公開しています。
 
 ### 1. `CupertinoTypography` — HIG 11 スタイル分の `TextStyle` 定数
 
@@ -134,6 +140,26 @@ MaterialApp(
 
 `example/` フォルダには、11 スタイルすべてを強調バリアントと並べて一覧表示
 するデモアプリが入っています。
+
+### 4. `CupertinoTypography.adaptiveTextTheme()` — Apple プラットフォームでのみ HIG タイポグラフィを適用
+
+iOS・macOS 以外もターゲットにするアプリのための `textTheme()` の派生版で
+す。iOS・macOS では `textTheme()` を返し、それ以外のプラットフォームでは
+`null` を返します。`ThemeData(textTheme:)` に `null` を渡すのはエラーでは
+なく、「Material 組み込みの既定 `TextTheme` にフォールバックする」という
+意味になるため、自前の `if` 分岐を書かなくても、そのまま `ThemeData` に渡
+すだけで Apple プラットフォームでだけ HIG タイポグラフィを適用できます。
+
+```dart
+MaterialApp(
+  theme: ThemeData(textTheme: CupertinoTypography.adaptiveTextTheme()),
+  home: const HomePage(),
+);
+```
+
+省略可能な `platform` 引数は、テストや特定のプラットフォームを強制した
+いコードのために用意されています。省略した場合は `defaultTargetPlatform`
+からプラットフォームを判定します。
 
 ### ダークモード対応(動的色の解決)
 
