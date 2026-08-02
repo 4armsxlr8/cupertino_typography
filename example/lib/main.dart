@@ -1,3 +1,4 @@
+import 'package:cupertino_typography/cupertino_typography.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
@@ -24,10 +25,14 @@ class TypographyExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'cupertino_typography example',
       debugShowCheckedModeBanner: false,
-      home: ExampleHomePage(),
+      // Recommended real-world usage: HIG typography on iOS/macOS, Material
+      // defaults everywhere else. (The feed demo overrides this locally so
+      // both themes can be compared side by side on the same device.)
+      theme: ThemeData(textTheme: CupertinoTypography.adaptiveTextTheme()),
+      home: const ExampleHomePage(),
     );
   }
 }
