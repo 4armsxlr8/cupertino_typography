@@ -2,6 +2,8 @@
 
 *English version: [README.md](README.md)*
 
+[![pub package](https://img.shields.io/pub/v/cupertino_typography.svg)](https://pub.dev/packages/cupertino_typography)
+
 Apple Human Interface Guidelines (HIG) が定義する iOS の Text Style カタログを、
 Flutter の `TextStyle` としてそのまま使えるようにするパッケージです。HIG の 11
 スタイルすべて(および各スタイルの強調バリアント)を static 定数として提供する
